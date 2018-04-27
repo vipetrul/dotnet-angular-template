@@ -1,0 +1,61 @@
+<h2 class="my-2">Orders</h2>
+
+<div class="my-4 text-center" *ngIf="showLoading">
+  <loading-bar [size]="1.5">Loading ... </loading-bar>
+</div>
+
+
+<div *ngIf="!showLoading">
+  <div class="table-responsive" *ngIf="orders" style="max-height: 600px;">
+    <table class="table table-striped table-bordered table-sm">
+      <thead class="thead-dark">
+        <th>ID</th>
+        <th>Description</th>
+        <th>CreatedBy</th>
+        <th>CreatedAt</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of orders">
+          <td>{{item.id}}</td>
+          <td class="text-nowrap">{{item.description}}</td>
+          <td>{{item.createdBy}}</td>
+          <td>{{item.createdAt}}</td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="open(deleteOrderModal, item)">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td class="text-nowrap">
+            <input type="text" class="form-control" [(ngModel)]="createOrderRequest.description">
+          </td>
+          <td> </td>
+          <td> </td>
+          <td class="align-middle">
+            <button class="btn btn-success btn-sm" (click)="addOrder()">Add Order</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<ng-template #deleteOrderModal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title background-danger">Are you sure to delete Order #{{selectedOrder.id}}?</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Description:</p>
+    <p>
+      {{selectedOrder.description}}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="deleteOrder()">Delete</button>
+    <button type="button" class="btn btn-outline-dark" (click)="c()">Cancel</button>
+  </div>
+</ng-template>
