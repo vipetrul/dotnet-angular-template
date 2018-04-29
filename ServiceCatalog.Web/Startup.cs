@@ -26,7 +26,7 @@ namespace ServiceCatalog.Web
         {
             var connString = Configuration.GetValue<string>("ConnectionStrings:ServiceCatalog");
             services.AddDbContext<ServiceCatalogDbContext>(options => options.UseSqlServer(connString));
-
+            
             services.AddMvc();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie();

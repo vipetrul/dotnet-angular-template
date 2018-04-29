@@ -10,6 +10,7 @@ import { AccessDeniedComponent } from './components/access-denied/access-denied.
 import { BasicUserRoleGuard } from './guards/basic-user-role.guard';
 import { AdminUserRoleGuard } from './guards/admin-user-role.guard.1';
 import { AppErrorHandler } from './services/app-errror-handler';
+import { AppHeaderComponent } from './components/app-header/app-header.component';
 
 export function getBaseHref(platformLocation: PlatformLocation): string {
   return platformLocation.getBaseHrefFromDOM();
@@ -21,7 +22,7 @@ export function getBaseHref(platformLocation: PlatformLocation): string {
     HttpClientModule,
     RouterModule,
   ],
-  declarations: [AppFooterComponent, AccessDeniedComponent],
+  declarations: [AppFooterComponent, AccessDeniedComponent, AppHeaderComponent],
   providers: [
     {
       provide: 'baseUri',
