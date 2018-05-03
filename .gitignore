@@ -219,3 +219,5 @@ _Pvt_Extensions
 ServiceCatalog\.Web/App_Data/logs/
 
 \.vscode/
+
+ServiceCatalog\.Web/wwwroot/

@@ -11,6 +11,7 @@ import { BasicUserRoleGuard } from './guards/basic-user-role.guard';
 import { AdminUserRoleGuard } from './guards/admin-user-role.guard.1';
 import { AppErrorHandler } from './services/app-errror-handler';
 import { AppHeaderComponent } from './components/app-header/app-header.component';
+import { SharedModule } from '../shared/shared.module';
 
 export function getBaseHref(platformLocation: PlatformLocation): string {
   return platformLocation.getBaseHrefFromDOM();
@@ -21,6 +22,7 @@ export function getBaseHref(platformLocation: PlatformLocation): string {
     CommonModule,
     HttpClientModule,
     RouterModule,
+    SharedModule
   ],
   declarations: [AppFooterComponent, AccessDeniedComponent, AppHeaderComponent],
   providers: [
@@ -38,7 +40,7 @@ export function getBaseHref(platformLocation: PlatformLocation): string {
     BasicUserRoleGuard,
     AdminUserRoleGuard
   ],
-  exports: [AppFooterComponent, AccessDeniedComponent]
+  exports: [AppFooterComponent, AccessDeniedComponent, AppHeaderComponent]
 })
 export class CoreModule {
   constructor(

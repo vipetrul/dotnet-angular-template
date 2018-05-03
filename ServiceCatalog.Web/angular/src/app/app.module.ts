@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { UserService } from './core/services/user.service';
 import { HomeComponent } from './home/home.component';
 import { OrderModule } from './order/order.module';
+import { SharedModule } from './shared/shared.module';
 
 export function appUserServiceFactory(userService: UserService): Function {
   return () => userService.getUser();
@@ -26,7 +27,8 @@ export function appUserServiceFactory(userService: UserService): Function {
     ToastrModule.forRoot(),
     CoreModule,
     AppRoutingModule,
-    OrderModule
+    OrderModule,
+    SharedModule
   ],
   providers: [{
     provide: APP_INITIALIZER,
