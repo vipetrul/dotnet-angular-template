@@ -1,7 +1,11 @@
-<mat-toolbar color="primary" fxLayout class="myClass" style="background-color: black">
-    <span><a><i class="fa fa-bars"></i></a></span>
-    <mat-divider [vertical]="true" style="color:#FFCD00"></mat-divider>
-    <span>My Application</span>
-    <span fxFlex>222</span>
-    <span>333</span>
-  </mat-toolbar>
+<mat-toolbar color="primary" fxLayout style="padding: 0 8px">
+    
+  <button mat-button mat-icon-button aria-label="Example icon-button with a heart icon" 
+  style="width: 50px; height: 50px">
+    <mat-icon svgIcon="home"></mat-icon>
+  </button>
+  <mat-divider [vertical]="true" style="color:#FFCD00"></mat-divider>
+  <span>My Application</span>
+  <span fxFlex>222</span>
+  <span>333</span>
+</mat-toolbar>
