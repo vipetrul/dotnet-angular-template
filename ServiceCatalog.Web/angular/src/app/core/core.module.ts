@@ -7,8 +7,6 @@ import { UserService } from './services/user.service';
 import { AppFooterComponent } from './components/app-footer/app-footer.component';
 import { HawkidLoginService } from './services/hawkid-login.service';
 import { AccessDeniedComponent } from './components/access-denied/access-denied.component';
-import { BasicUserRoleGuard } from './guards/basic-user-role.guard';
-import { AdminUserRoleGuard } from './guards/admin-user-role.guard.1';
 import { AppErrorHandler } from './services/app-errror-handler';
 import { AppHeaderComponent } from './components/app-header/app-header.component';
 import { SharedModule } from '../shared/shared.module';
@@ -37,8 +35,6 @@ export function getBaseHref(platformLocation: PlatformLocation): string {
     },
     HawkidLoginService,
     UserService,
-    BasicUserRoleGuard,
-    AdminUserRoleGuard
   ],
   exports: [AppFooterComponent, AccessDeniedComponent, AppHeaderComponent]
 })

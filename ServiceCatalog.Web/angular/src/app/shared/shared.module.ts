@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SpinnerModule } from '@fbis/spinner';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { faBars } from '@fortawesome/fontawesome-free-solid';
@@ -47,7 +46,6 @@ import {
     CommonModule, 
     FormsModule, 
     FlexLayoutModule,
-    SpinnerModule,
     MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
@@ -86,7 +84,6 @@ import {
     CommonModule, 
     FormsModule, 
     FlexLayoutModule,
-    SpinnerModule,
     MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,

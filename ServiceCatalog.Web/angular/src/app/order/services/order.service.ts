@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/publishReplay';
 import { Order } from '../models/order';
 import { CreateOrderRequest } from '../models/create-order-request';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class OrderService {
@@ -12,12 +11,7 @@ export class OrderService {
   constructor(private readonly httpClient: HttpClient) {}
 
   getOrders(): Observable<Order[]> {
-    if (!this.orders$) {
-      this.orders$ = this.httpClient
-        .get<Order[]>(this.api)
-        .publishReplay(1)
-        .refCount();
-    }
+    alert("getting orders");
     return this.orders$;
   }
 
