@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ApplicationUser } from './core/models/application-user';
-import { UserService } from './core/services/user.service';
 import { Subscription } from 'rxjs';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MatIconRegistry } from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -10,22 +11,18 @@ import { Subscription } from 'rxjs';
 })
 export class AppComponent implements OnInit, OnDestroy {
   applicationName = 'ServiceCatalog';
+  isHandset = this.breakpointObserver.observe(Breakpoints.Handset);
 
-  startTimer: boolean;
-  private userSubscription: Subscription;
-
-  constructor(private readonly userService: UserService) {}
+  constructor(private breakpointObserver: BreakpointObserver, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+    //register material svg icons
+    iconRegistry.addSvgIcon('menu',sanitizer.bypassSecurityTrustResourceUrl('assets/icons/ic_menu_24px.svg'));
+  }
 
   ngOnInit(): void {
-    this.userSubscription = this.userService.user$.subscribe(user => {
-      console.log(user);
-      this.startTimer = user.isAuthenticated();
-    });
+    
   }
 
   ngOnDestroy(): void {
-    if (this.userSubscription) {
-      this.userSubscription.unsubscribe();
-    }
+
   }
 }

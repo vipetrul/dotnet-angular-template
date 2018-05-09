@@ -8,7 +8,6 @@ import { AppFooterComponent } from './components/app-footer/app-footer.component
 import { HawkidLoginService } from './services/hawkid-login.service';
 import { AccessDeniedComponent } from './components/access-denied/access-denied.component';
 import { AppErrorHandler } from './services/app-errror-handler';
-import { AppHeaderComponent } from './components/app-header/app-header.component';
 import { SharedModule } from '../shared/shared.module';
 
 export function getBaseHref(platformLocation: PlatformLocation): string {
@@ -22,7 +21,7 @@ export function getBaseHref(platformLocation: PlatformLocation): string {
     RouterModule,
     SharedModule
   ],
-  declarations: [AppFooterComponent, AccessDeniedComponent, AppHeaderComponent],
+  declarations: [AppFooterComponent, AccessDeniedComponent],
   providers: [
     {
       provide: 'baseUri',
@@ -36,7 +35,7 @@ export function getBaseHref(platformLocation: PlatformLocation): string {
     HawkidLoginService,
     UserService,
   ],
-  exports: [AppFooterComponent, AccessDeniedComponent, AppHeaderComponent]
+  exports: [AppFooterComponent, AccessDeniedComponent]
 })
 export class CoreModule {
   constructor(
