@@ -7,8 +7,7 @@
     *ngIf="(isHandset | async)!.matches">
     <mat-icon svgIcon="menu" aria-label="Side menu toggle icon"></mat-icon>
   </button>
-  <span>Application Title</span>
-  <span fxFlex><!-- spacer --></span>
+  <span fxFlex [style.text-align]="(isHandset | async)!.matches ? 'center' : 'left'">Application Title<!--This is also a spacer--> </span>
   <span>
     <button mat-button>Login</button>
   </span>
