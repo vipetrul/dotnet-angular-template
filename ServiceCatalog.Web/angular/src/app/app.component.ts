@@ -10,8 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  applicationName = 'ServiceCatalog';
-  isHandset = this.breakpointObserver.observe(Breakpoints.Handset);
+  isSmall = this.breakpointObserver.observe([Breakpoints.Small, Breakpoints.XSmall]);
 
   constructor(private breakpointObserver: BreakpointObserver, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     //register material svg icons
