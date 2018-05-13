@@ -11,6 +11,8 @@ import { UserService } from './core/services/user.service';
 import { HomeComponent } from './home/home.component';
 import { OrderModule } from './order/order.module';
 import { SharedModule } from './shared/shared.module';
+import { Page2Component } from './page2/page2.component';
+import { Page3Component } from './page3/page3.component';
 
 export function appUserServiceFactory(userService: UserService): Function {
   return () => userService.getUser();
@@ -19,7 +21,9 @@ export function appUserServiceFactory(userService: UserService): Function {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    Page2Component,
+    Page3Component
   ],
   imports: [
     BrowserModule,
