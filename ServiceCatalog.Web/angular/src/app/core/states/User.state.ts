@@ -28,15 +28,9 @@ export class UserState {
 
   @Action(LoadUser)
   loadUser(ctx: StateContext<UserState>, action: LoadUser) {
-    console.log("loading user");
-    let state = ctx.getState();
-    console.log('original state', state);
     this._httpClient.get("account/user")
       .subscribe(data => {
-        console.log('got user', data);
-        Object.assign(state, data);
-        console.log('new state', state);
-        ctx.patchState(state)
+        ctx.patchState(data)
       });
   }
 
