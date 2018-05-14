@@ -22,9 +22,6 @@ export class AppComponent implements OnInit, OnDestroy {
         //register material svg icons
         iconRegistry.addSvgIcon('menu',sanitizer.bypassSecurityTrustResourceUrl('assets/icons/menu_24px.svg'));
         iconRegistry.addSvgIcon('person',sanitizer.bypassSecurityTrustResourceUrl('assets/icons/person-24px.svg'));
-
-        //load user profile as soon as application starts
-        store.dispatch(new LoadUser());
   }
 
   ngOnInit(): void {

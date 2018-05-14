@@ -1,4 +1,4 @@
-import { State, Store, Action, StateContext, Selector } from '@ngxs/store';
+import { State, Store, Action, StateContext, Selector, NgxsOnInit } from '@ngxs/store';
 import { HttpClient } from '@angular/common/http';
 
 //Model
@@ -18,9 +18,13 @@ export class LoadUser {
   name: 'user',
   defaults: new User()
 })
-export class UserState {
-  constructor(private _httpClient: HttpClient) {
-    console.log("UserState constructor");
+export class UserState implements NgxsOnInit  {
+
+  constructor(private _httpClient: HttpClient) {  }
+
+  ngxsOnInit(ctx: StateContext<User>) {
+    //an application start, load user profile
+    ctx.dispatch(new LoadUser());
   }
 
   @Selector()
