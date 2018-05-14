@@ -22,6 +22,12 @@ namespace ServiceCatalog.Web.Infrastructure
         public async Task<string> GetRole(string hawkId)
         {
             _logger.LogInformation($"Get User Role for {hawkId}");
+            
+            if (hawkId == "v_petrulevich")
+                return AppRoles.WebMaster;
+
+            return AppRoles.BasicUser; 
+            /* 
             if (AD_Utility.IsUserInGroup(hawkId, "FBIS-Role_Developer-Parking-Admin"))
             {
                 return AppRoles.WebMaster;
@@ -30,6 +36,7 @@ namespace ServiceCatalog.Web.Infrastructure
             {
                 return AppRoles.BasicUser;
             }
+            */
             return null;
         }
 
