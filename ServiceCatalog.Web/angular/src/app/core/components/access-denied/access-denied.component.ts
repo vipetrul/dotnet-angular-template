@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HawkidLoginService } from '../../services/hawkid-login.service';
-import { UserService } from '../../services/user.service';
 
 @Component({
   templateUrl: './access-denied.component.html',
@@ -8,8 +7,7 @@ import { UserService } from '../../services/user.service';
 })
 export class AccessDeniedComponent implements OnInit {
   constructor(
-    private readonly loginService: HawkidLoginService,
-    public readonly userService: UserService
+    private readonly loginService: HawkidLoginService
   ) {}
 
   ngOnInit() {}

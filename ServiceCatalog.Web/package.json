@@ -27,6 +27,7 @@
     "@angular/router": "6.0.0",
     "@fortawesome/fontawesome": "^1.1.7",
     "@fortawesome/fontawesome-free-solid": "^5.0.12",
+    "@ngxs/store": "^3.0.1",
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.4.1",
     "ngx-toastr": "^8.5.0",
