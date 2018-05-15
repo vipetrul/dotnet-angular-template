@@ -3,7 +3,6 @@ import { CommonModule, PlatformLocation } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Router } from '@angular/router';
 
-import { AppFooterComponent } from './components/app-footer/app-footer.component';
 import { HawkidLoginService } from './services/hawkid-login.service';
 import { AccessDeniedComponent } from './components/access-denied/access-denied.component';
 import { AppErrorHandler } from './services/app-errror-handler';
@@ -21,7 +20,7 @@ export function getBaseHref(platformLocation: PlatformLocation): string {
     RouterModule,
     SharedModule
   ],
-  declarations: [AppFooterComponent, AccessDeniedComponent, LoginButtonComponent],
+  declarations: [AccessDeniedComponent, LoginButtonComponent],
   providers: [
     {
       provide: 'baseUri',
@@ -34,7 +33,7 @@ export function getBaseHref(platformLocation: PlatformLocation): string {
     },
     HawkidLoginService,
   ],
-  exports: [AppFooterComponent, AccessDeniedComponent, LoginButtonComponent]
+  exports: [AccessDeniedComponent, LoginButtonComponent]
 })
 export class CoreModule {
   constructor(
