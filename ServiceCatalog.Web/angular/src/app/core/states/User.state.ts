@@ -5,7 +5,8 @@ import { HttpClient } from '@angular/common/http';
 export class User {
   hawkId: string = '';
   univId: string = '';
-  originalUser?: string | null
+  originalUser?: string | null = null;
+  fullName: string = '';
 }
 
 //Actions
@@ -23,7 +24,7 @@ export class UserState implements NgxsOnInit  {
   constructor(private _httpClient: HttpClient) {  }
 
   ngxsOnInit(ctx: StateContext<User>) {
-    //an application start, load user profile
+    //on application start, load user profile
     ctx.dispatch(new LoadUser());
   }
 

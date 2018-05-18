@@ -31,13 +31,13 @@ namespace ServiceCatalog.Web.Controllers
             {
                 return null;
             }
-            var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
+            
             return new ApplicationUserViewModel
             {
                 HawkId = hawkId,
                 UnivId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value,
                 OriginalUser = User.FindFirst("OriginalUser")?.Value,
-                Role = userRole,
+                FullName = "Valerij Petrulevich"
             };
         }
 
@@ -56,9 +56,6 @@ namespace ServiceCatalog.Web.Controllers
         public string HawkId { get; set; }
         public string UnivId { get; set; }
         public string OriginalUser { get; set; }
-        public string Role { get; set; }
         public string FullName { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
     }
 }

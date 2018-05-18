@@ -20,10 +20,11 @@ export class AppComponent implements OnInit, OnDestroy {
       sanitizer: DomSanitizer,
       store: Store) {
         //register material svg icons
-        iconRegistry.addSvgIcon('menu',sanitizer.bypassSecurityTrustResourceUrl('assets/icons/menu_24px.svg'));
-        iconRegistry.addSvgIcon('person',sanitizer.bypassSecurityTrustResourceUrl('assets/icons/person-24px.svg'));
+        iconRegistry.addSvgIcon('account_circle',sanitizer.bypassSecurityTrustResourceUrl('assets/icons/account_circle-24px.svg'));
         iconRegistry.addSvgIcon('arrow_drop_down',sanitizer.bypassSecurityTrustResourceUrl('assets/icons/arrow_drop_down-24px.svg'));
         iconRegistry.addSvgIcon('exit_to_app',sanitizer.bypassSecurityTrustResourceUrl('assets/icons/exit_to_app-24px.svg'));
+        iconRegistry.addSvgIcon('menu',sanitizer.bypassSecurityTrustResourceUrl('assets/icons/menu_24px.svg'));
+        iconRegistry.addSvgIcon('person',sanitizer.bypassSecurityTrustResourceUrl('assets/icons/person-24px.svg'));
   }
 
   ngOnInit(): void {
