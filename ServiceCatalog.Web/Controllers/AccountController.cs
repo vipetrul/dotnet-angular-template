@@ -37,7 +37,7 @@ namespace ServiceCatalog.Web.Controllers
                 HawkId = hawkId,
                 UnivId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value,
                 OriginalUser = User.FindFirst("OriginalUser")?.Value,
-                FullName = "Valerij Petrulevich"
+                FullName = $"Mr. {hawkId.Substring(0,1).ToUpper() + hawkId.Substring(1)} Smith"
             };
         }
 
