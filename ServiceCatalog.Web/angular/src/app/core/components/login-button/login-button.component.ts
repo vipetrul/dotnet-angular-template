@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserState, User } from '../../states/User.state';
 import { Observable } from 'rxjs';
 import { Select } from '@ngxs/store';
+import { PermissionsState } from '../../states/Permissions.state';
 
 @Component({
   selector: 'login-button',
@@ -11,11 +12,14 @@ import { Select } from '@ngxs/store';
   
     <mat-menu #userMenu="matMenu" overlapTrigger="false">
       <div class="userProfile">
-          <h2 fxLayout style="margin:0; color: rgba(0,0,0,.87)">{{(user$ | async).fullName}}</h2>
-          <span class="fieldName">HawkID:</span> {{(user$ | async).hawkId}}<br>
-          <span class="fieldName">UnivID:</span> {{(user$ | async).univId}}
+          <h2 fxLayout style="margin:0; color: rgba(0,0,0,.87)">{{(user$ | async)?.fullName}}</h2>
+          <span class="fieldName">HawkID:</span> {{(user$ | async)?.hawkId}}<br>
+          <span class="fieldName">UnivID:</span> {{(user$ | async)?.univId}}
       </div>
       <mat-divider></mat-divider>
+      <a mat-menu-item *ngIf="canImpersonate$ | async" ><mat-icon svgIcon="supervisor_account" aria-label="Logout"></mat-icon>
+        <span>Impersonate</span>
+      </a>
       <a mat-menu-item href="/account/Logout"><mat-icon svgIcon="exit_to_app" aria-label="Logout"></mat-icon>
         <span>Logout</span>
       </a>
@@ -28,6 +32,7 @@ import { Select } from '@ngxs/store';
 export class LoginButtonComponent implements OnInit {
   @Select(UserState) user$: Observable<User>;
   @Select(UserState.IsAuthenticated) isAuthenticated$: Observable<boolean>;
+  @Select(PermissionsState.CanImpersonate) canImpersonate$: Observable<boolean>;
 
   constructor() {
   }

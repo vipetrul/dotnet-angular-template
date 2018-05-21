@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AccessDeniedComponent } from './core/components/access-denied/access-denied.component';
 import { HomeComponent } from './home/home.component';
 import { OrdersComponent } from './order/orders/orders.component';
 import { Page2Component } from './page2/page2.component';
@@ -28,10 +27,6 @@ export const routes: Routes = [
   {
     path: 'orders',
     component: OrdersComponent
-  },
-  {
-    path: 'accessDenied',
-    component: AccessDeniedComponent
   },
   {
     path: '**',

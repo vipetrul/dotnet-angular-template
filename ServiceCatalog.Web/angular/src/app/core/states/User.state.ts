@@ -1,5 +1,6 @@
 import { State, Store, Action, StateContext, Selector, NgxsOnInit } from '@ngxs/store';
 import { HttpClient } from '@angular/common/http';
+import { LoadPermissions } from './Permissions.state';
 
 //Model
 export class User {
@@ -32,11 +33,14 @@ export class UserState implements NgxsOnInit  {
   static IsAuthenticated(user: User) { return !!user.hawkId; }
 
   @Action(LoadUser)
-  loadUser(ctx: StateContext<UserState>, action: LoadUser) {
-    this._httpClient.get("account/user")
-      .subscribe(data => {
-        ctx.patchState(data)
-      });
+  async loadUser(ctx: StateContext<UserState>, action: LoadUser) {
+    // As user loaded, we need to load permissions as well
+    ctx.dispatch(new LoadPermissions());
+    
+    var newState = await this._httpClient.get<UserState>("account/user").toPromise();
+    ctx.setState(newState);
+    
+    
   }
 
 }

@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Security.Claims;
+using System.Security.Principal;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Uiowa.Common.ActiveDirectory;
 
@@ -7,7 +9,7 @@ namespace ServiceCatalog.Web.Infrastructure
     public interface IAuthorizationPolicy
     {
         Task<string> GetRole(string hawkId);
-        Task<ImpersonateResult> CanImpersonate(string currentUserRole, string hawkIdToBeImpersonated);
+        Task<bool> CanImpersonate(ClaimsPrincipal currentUser);
     }
 
     public class AuthorizationPolicy : IAuthorizationPolicy
@@ -21,12 +23,10 @@ namespace ServiceCatalog.Web.Infrastructure
 
         public async Task<string> GetRole(string hawkId)
         {
+            //TODO: update for your project
             _logger.LogInformation($"Get User Role for {hawkId}");
-            
-            if (hawkId == "v_petrulevich")
-                return AppRoles.WebMaster;
 
-            return AppRoles.BasicUser; 
+            return AppRoles.BasicUser;
             /* 
             if (AD_Utility.IsUserInGroup(hawkId, "FBIS-Role_Developer-Parking-Admin"))
             {
@@ -37,21 +37,13 @@ namespace ServiceCatalog.Web.Infrastructure
                 return AppRoles.BasicUser;
             }
             */
-            return null;
         }
 
-        public async Task<ImpersonateResult> CanImpersonate(string currentUserRole, string hawkIdToBeImpersonated)
+
+        public async Task<bool> CanImpersonate(ClaimsPrincipal currentUser)
         {
-            if (currentUserRole != AppRoles.WebMaster)
-            {
-                return new ImpersonateResult(false);
-            }
-            var impersonatedUserRole = await GetRole(hawkIdToBeImpersonated);
-            if (impersonatedUserRole == AppRoles.WebMaster)
-            {
-                return new ImpersonateResult(false); 
-            }
-            return new ImpersonateResult(true, impersonatedUserRole);
+            //TODO: update for your project
+            return currentUser?.Identity?.Name == "vpetrule";
         }
     }
 
@@ -62,15 +54,4 @@ namespace ServiceCatalog.Web.Infrastructure
         public const string WebMaster = nameof(WebMaster);
     }
 
-    public class ImpersonateResult
-    {
-        public bool CanImpersonate { get; protected set; }
-        public string ImpersonatedUserRole { get; protected set; }
-
-        public ImpersonateResult(bool canImpersonate, string impersonatedUserRole = "")
-        {
-            CanImpersonate = canImpersonate;
-            ImpersonatedUserRole = impersonatedUserRole;
-        }
-    }
 }
