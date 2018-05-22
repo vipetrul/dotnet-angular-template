@@ -21,7 +21,7 @@
     <PackageReference Include="Serilog.Sinks.RollbarCom" Version="1.0.1" />
     <PackageReference Include="Serilog.Sinks.RollingFile" Version="3.3.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="2.4.0" />
-    <PackageReference Include="Uiowa.Common.ActiveDirectory" Version="2.0.0" />
+    <PackageReference Include="Uiowa.Common.ActiveDirectory" Version="2.1.1" />
     <PackageReference Include="Uiowa.Login.Core.UIP" Version="1.1.2" />
   </ItemGroup>
 

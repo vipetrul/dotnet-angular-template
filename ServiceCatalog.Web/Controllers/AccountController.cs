@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ServiceCatalog.Core.DbContext;
 using ServiceCatalog.Web.Infrastructure;
+using Uiowa.Common.ActiveDirectory;
 
 namespace ServiceCatalog.Web.Controllers
 {
@@ -24,21 +25,28 @@ namespace ServiceCatalog.Web.Controllers
         }
 
         [HttpGet, Route("user"), ProducesResponseType(typeof(ApplicationUserViewModel), StatusCodes.Status200OK)]
-        public async Task<ApplicationUserViewModel> GetUser()
+        public IActionResult GetUser()
         {
             var hawkId = User?.Identity?.Name;
+
+            var result = new ApplicationUserViewModel();
+
             if (string.IsNullOrEmpty(hawkId))
             {
-                return null;
+                return Ok(result);
             }
-            
-            return new ApplicationUserViewModel
+
+            result.HawkId = hawkId;
+            result.UnivId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            result.OriginalUser = User.FindFirst("OriginalUser")?.Value;
+
+            var userProperties = AD_Utility.GetUserProperties(hawkId, "GivenName", "sn");
+            if (userProperties != null)
             {
-                HawkId = hawkId,
-                UnivId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value,
-                OriginalUser = User.FindFirst("OriginalUser")?.Value,
-                FullName = $"Mr. {hawkId.Substring(0,1).ToUpper() + hawkId.Substring(1)} Smith"
-            };
+                result.FullName = $"{userProperties[0]} {userProperties[1]}";
+            }
+
+            return Ok(result);
         }
 
         [HttpGet, Route("AccessDenied"), ProducesResponseType(StatusCodes.Status401Unauthorized)]
