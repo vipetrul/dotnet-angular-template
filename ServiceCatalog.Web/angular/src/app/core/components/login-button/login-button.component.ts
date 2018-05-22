@@ -3,6 +3,8 @@ import { UserState, User } from '../../states/User.state';
 import { Observable } from 'rxjs';
 import { Select } from '@ngxs/store';
 import { PermissionsState } from '../../states/Permissions.state';
+import { MatDialog } from '@angular/material';
+import { ImpersonateDialog } from '../impersonate-dialog/impersonate-dialog.component';
 
 @Component({
   selector: 'login-button',
@@ -17,7 +19,7 @@ import { PermissionsState } from '../../states/Permissions.state';
           <span class="fieldName">UnivID:</span> {{(user$ | async)?.univId}}
       </div>
       <mat-divider></mat-divider>
-      <a mat-menu-item *ngIf="canImpersonate$ | async" ><mat-icon svgIcon="supervisor_account" aria-label="Logout"></mat-icon>
+      <a mat-menu-item (click)="openImpersonateDialog()" *ngIf="canImpersonate$ | async" ><mat-icon svgIcon="supervisor_account" aria-label="Logout"></mat-icon>
         <span>Impersonate</span>
       </a>
       <a mat-menu-item href="/account/Logout"><mat-icon svgIcon="exit_to_app" aria-label="Logout"></mat-icon>
@@ -34,10 +36,18 @@ export class LoginButtonComponent implements OnInit {
   @Select(UserState.IsAuthenticated) isAuthenticated$: Observable<boolean>;
   @Select(PermissionsState.CanImpersonate) canImpersonate$: Observable<boolean>;
 
-  constructor() {
+  constructor(public dialog: MatDialog) {
   }
 
   ngOnInit() {
   }
 
+  openImpersonateDialog(){
+    let dialogRef = this.dialog.open(ImpersonateDialog);
+  }
+
 }
+
+
+
+

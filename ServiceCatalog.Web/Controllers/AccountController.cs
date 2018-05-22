@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -47,6 +50,37 @@ namespace ServiceCatalog.Web.Controllers
             }
 
             return Ok(result);
+        }
+
+        [HttpGet, Route("impersonate/{hawkIdToImpersonate}")]
+        public async Task<IActionResult> Impersonate(string hawkIdToImpersonate, string returnUrl)
+        {
+            var currentUserHawkId = User.Identity.Name;
+            _logger.LogInformation($"User {currentUserHawkId} is trying to impersonate {hawkIdToImpersonate}");
+
+            if (await _authorizationPolicy.CanImpersonate(this.User) == false)
+            {
+                _logger.LogInformation($"User {currentUserHawkId} has no permissions to impersonate.");
+                return BadRequest($"You don't have permissions to impersonate");
+            }
+
+            var userProperties = AD_Utility.GetUserProperties(hawkIdToImpersonate, "GivenName", "sn");
+
+            if (userProperties == null)
+            {
+                return BadRequest($"HawkId '{hawkIdToImpersonate}' doesn't exist.");
+            }
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, hawkIdToImpersonate),
+                new Claim("OriginalUser", currentUserHawkId)
+            };
+
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+
+            return Redirect(string.IsNullOrEmpty(returnUrl) ? "/" : returnUrl);
         }
 
         [HttpGet, Route("AccessDenied"), ProducesResponseType(StatusCodes.Status401Unauthorized)]
