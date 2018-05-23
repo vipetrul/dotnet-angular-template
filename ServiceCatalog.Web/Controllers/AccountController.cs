@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
@@ -56,6 +57,7 @@ namespace ServiceCatalog.Web.Controllers
         public async Task<IActionResult> Impersonate(string hawkIdToImpersonate, string returnUrl)
         {
             var currentUserHawkId = User.Identity.Name;
+            var originalUser = User.Claims.FirstOrDefault(c => c.Type == "OriginalUser")?.Value;
             _logger.LogInformation($"User {currentUserHawkId} is trying to impersonate {hawkIdToImpersonate}");
 
             if (await _authorizationPolicy.CanImpersonate(this.User) == false)
@@ -74,7 +76,7 @@ namespace ServiceCatalog.Web.Controllers
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, hawkIdToImpersonate),
-                new Claim("OriginalUser", currentUserHawkId)
+                new Claim("OriginalUser", string.IsNullOrEmpty(originalUser) ? currentUserHawkId : originalUser) //if it is chain impersonation, keep original user
             };
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
