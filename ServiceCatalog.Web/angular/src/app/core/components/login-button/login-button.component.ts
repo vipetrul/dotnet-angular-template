@@ -10,13 +10,17 @@ import { ImpersonateDialog } from '../impersonate-dialog/impersonate-dialog.comp
   selector: 'login-button',
   template: `
     <a mat-button *ngIf="!(isAuthenticated$ | async)" href="account/Login">Login</a>
-    <a mat-button mat-icon-button *ngIf="(isAuthenticated$ | async)" [matMenuTriggerFor]="userMenu"><mat-icon svgIcon="account_circle"></mat-icon></a>
+    <a mat-button mat-icon-button *ngIf="(isAuthenticated$ | async)" [matMenuTriggerFor]="userMenu">
+      <mat-icon *ngIf="!(isImpersonated$ | async)" svgIcon="account_circle"></mat-icon>
+      <mat-icon *ngIf="(isImpersonated$ | async)" svgIcon="supervised_user_circle"></mat-icon>
+    </a>
   
     <mat-menu #userMenu="matMenu" overlapTrigger="false">
       <div class="userProfile">
           <h2 fxLayout style="margin:0; color: rgba(0,0,0,.87)">{{(user$ | async)?.fullName}}</h2>
-          <span class="fieldName">HawkID:</span> {{(user$ | async)?.hawkId}}<br>
-          <span class="fieldName">UnivID:</span> {{(user$ | async)?.univId}}
+            <div><span class="fieldName">HawkID:</span> {{(user$ | async)?.hawkId}}</div>
+            <div><span class="fieldName">UnivID:</span> {{(user$ | async)?.univId}}</div>
+            <div *ngIf="(isImpersonated$ | async)" class="mat-caption">Impersonated by {{(user$ | async)?.originalUser}}.</div>
       </div>
       <mat-divider></mat-divider>
       <a mat-menu-item (click)="openImpersonateDialog()" *ngIf="canImpersonate$ | async" ><mat-icon svgIcon="supervisor_account" aria-label="Logout"></mat-icon>
@@ -34,6 +38,7 @@ import { ImpersonateDialog } from '../impersonate-dialog/impersonate-dialog.comp
 export class LoginButtonComponent implements OnInit {
   @Select(UserState) user$: Observable<User>;
   @Select(UserState.IsAuthenticated) isAuthenticated$: Observable<boolean>;
+  @Select(UserState.IsImpersonated) isImpersonated$: Observable<boolean>;
   @Select(PermissionsState.CanImpersonate) canImpersonate$: Observable<boolean>;
 
   constructor(public dialog: MatDialog) {

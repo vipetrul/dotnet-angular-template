@@ -32,6 +32,9 @@ export class UserState implements NgxsOnInit  {
   @Selector()
   static IsAuthenticated(user: User) { return !!user.hawkId; }
 
+  @Selector()
+  static IsImpersonated(user: User) { return !!user.originalUser }
+
   @Action(LoadUser)
   async loadUser(ctx: StateContext<UserState>, action: LoadUser) {
     // As user loaded, we need to load permissions as well
@@ -39,8 +42,6 @@ export class UserState implements NgxsOnInit  {
     
     var newState = await this._httpClient.get<UserState>("account/user").toPromise();
     ctx.setState(newState);
-    
-    
   }
 
 }

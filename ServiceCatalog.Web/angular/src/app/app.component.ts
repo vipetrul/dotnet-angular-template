@@ -26,6 +26,7 @@ export class AppComponent implements OnInit, OnDestroy {
         iconRegistry.addSvgIcon('menu',sanitizer.bypassSecurityTrustResourceUrl('assets/icons/menu_24px.svg'));
         iconRegistry.addSvgIcon('person',sanitizer.bypassSecurityTrustResourceUrl('assets/icons/person-24px.svg'));
         iconRegistry.addSvgIcon('supervisor_account',sanitizer.bypassSecurityTrustResourceUrl('assets/icons/supervisor_account-24px.svg'));
+        iconRegistry.addSvgIcon('supervised_user_circle',sanitizer.bypassSecurityTrustResourceUrl('assets/icons/supervised_user_circle-24px.svg'));
   }
 
   ngOnInit(): void {
