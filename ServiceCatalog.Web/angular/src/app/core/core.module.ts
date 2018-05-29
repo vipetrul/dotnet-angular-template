@@ -5,8 +5,7 @@ import { RouterModule, Router } from '@angular/router';
 
 import { AppErrorHandler } from './services/app-errror-handler';
 import { SharedModule } from '../shared/shared.module';
-import { LoginButtonComponent } from './components/login-button/login-button.component';
-import { ImpersonateDialog } from './components/impersonate-dialog/impersonate-dialog.component';
+
 
 export function getBaseHref(platformLocation: PlatformLocation): string {
   return platformLocation.getBaseHrefFromDOM();
@@ -19,7 +18,7 @@ export function getBaseHref(platformLocation: PlatformLocation): string {
     RouterModule,
     SharedModule
   ],
-  declarations: [LoginButtonComponent, ImpersonateDialog],
+  declarations: [],
   providers: [
     {
       provide: 'baseUri',
@@ -31,8 +30,7 @@ export function getBaseHref(platformLocation: PlatformLocation): string {
       useClass: AppErrorHandler
     },
   ],
-  entryComponents: [ImpersonateDialog],
-  exports: [LoginButtonComponent,ImpersonateDialog]
+  exports: []
 })
 export class CoreModule {
   constructor(

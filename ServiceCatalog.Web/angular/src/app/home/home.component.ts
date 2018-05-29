@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserState, User } from '../core/states/User.state';
+import { UserState, User } from '../shared/states/User.state';
 import { Observable } from 'rxjs';
 import { Select } from '@ngxs/store';
-import { Permissions, PermissionsState } from '../core/states/Permissions.state';
+import { Permissions, PermissionsState } from '../shared/states/Permissions.state';
 
 @Component({
   selector: 'app-home',

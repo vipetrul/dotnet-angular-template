@@ -4,7 +4,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Store } from '@ngxs/store';
-import { LoadUser } from './core/states/User.state';
+import { LoadUser } from './shared/states/User.state';
 
 @Component({
   selector: 'app-root',

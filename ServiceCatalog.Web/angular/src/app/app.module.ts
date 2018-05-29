@@ -15,9 +15,9 @@ import { SharedModule } from './shared/shared.module';
 import { Page2Component } from './page2/page2.component';
 import { Page3Component } from './page3/page3.component';
 
-import { UserState } from './core/states/User.state';
+import { UserState } from './shared/states/User.state';
 import { environment } from '../environments/environment';
-import { PermissionsState } from './core/states/Permissions.state';
+import { PermissionsState } from './shared/states/Permissions.state';
 
 @NgModule({
   declarations: [
