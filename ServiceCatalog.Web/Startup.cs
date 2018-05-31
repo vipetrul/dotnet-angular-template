@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ServiceCatalog.Core.DbContext;
 using ServiceCatalog.Web.Infrastructure;
 using Swashbuckle.AspNetCore.Swagger;
+using Uiowa.Common.ActiveDirectory;
 using Uiowa.Login.Core.UIP;
 
 namespace ServiceCatalog.Web
@@ -61,6 +63,13 @@ namespace ServiceCatalog.Web
                     var authorizationPolicy = context.HttpContext.RequestServices.GetRequiredService<IAuthorizationPolicy>();
                     var role = await authorizationPolicy.GetRole(context.HawkId) ?? "";
                     context.AddClaim(new Claim(ClaimTypes.Role, role));
+
+                    var userProperties = AD_Utility.GetUserProperties(context.HawkId, "uiowaMRUID", "extensionAttribute12");
+
+                    if (userProperties == null) new ArgumentException($"HawkId '{context.HawkId}' doesn't exist.");
+
+                    var mruid = userProperties[0] ?? userProperties[1];
+                    context.AddClaim(new Claim("mruid", mruid));
                 };
             });
             app.UseDefaultFiles();

@@ -66,16 +66,20 @@ namespace ServiceCatalog.Web.Controllers
                 return BadRequest($"You don't have permissions to impersonate");
             }
 
-            var userProperties = AD_Utility.GetUserProperties(hawkIdToImpersonate, "GivenName", "sn");
+            var userProperties = AD_Utility.GetUserProperties(hawkIdToImpersonate, "uiowaMRUID", "extensionAttribute12");
 
             if (userProperties == null)
             {
                 return BadRequest($"HawkId '{hawkIdToImpersonate}' doesn't exist.");
             }
 
+            var mruid = userProperties[0] ?? userProperties[1];
+
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, hawkIdToImpersonate),
+                new Claim(ClaimTypes.NameIdentifier, mruid),
+                new Claim(ClaimTypes.Role, await _authorizationPolicy.GetRole(hawkIdToImpersonate)),
                 new Claim("OriginalUser", string.IsNullOrEmpty(originalUser) ? currentUserHawkId : originalUser) //if it is chain impersonation, keep original user
             };
 
