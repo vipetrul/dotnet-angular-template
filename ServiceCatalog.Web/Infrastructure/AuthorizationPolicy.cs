@@ -43,7 +43,7 @@ namespace ServiceCatalog.Web.Infrastructure
         public async Task<bool> CanImpersonate(ClaimsPrincipal currentUser)
         {
             //TODO: update for your project
-            return currentUser?.Identity?.Name == "vpetrule";
+            return (currentUser?.Identity?.Name ?? "").Contains("_");
         }
     }
 

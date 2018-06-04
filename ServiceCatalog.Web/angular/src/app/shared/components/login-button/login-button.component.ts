@@ -20,7 +20,7 @@ import { ImpersonateDialog } from '../impersonate-dialog/impersonate-dialog.comp
           <h2 fxLayout style="margin:0; color: rgba(0,0,0,.87)">{{(user$ | async)?.fullName}}</h2>
             <div><span class="fieldName">HawkID:</span> {{(user$ | async)?.hawkId}}</div>
             <div><span class="fieldName">UnivID:</span> {{(user$ | async)?.univId}}</div>
-            <div *ngIf="(isImpersonated$ | async)" class="mat-caption">Impersonated by {{(user$ | async)?.originalUser}}.</div>
+            <div *ngIf="(isImpersonated$ | async)" class="mat-caption">(Impersonated by {{(user$ | async)?.originalUser}})</div>
       </div>
       <mat-divider></mat-divider>
       <a mat-menu-item (click)="openImpersonateDialog()" *ngIf="canImpersonate$ | async" ><mat-icon svgIcon="supervisor_account" aria-label="Logout"></mat-icon>
