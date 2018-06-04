@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'branding-bar',
@@ -10,14 +10,14 @@ import { Component, OnInit } from '@angular/core';
 				</svg>
       </a>
       <div fxFlex></div>
-      <div class="externalLinks" >
-        <a href="https://its.uiowa.edu/contact">Help Desk</a>
-        <a href="https://hris.uiowa.edu">Self Service</a>
+      <div>
+        <external-links class="externalLinks"></external-links>
       </div>
     </div>
   `,
+  encapsulation: ViewEncapsulation.Native,
   styles: [
-    ".externalLinks a {color:#999999; text-decoration:none; display:inline-block; padding-left: 1em}",
+    ".externalLinks a {color:#999999; text-decoration:none; display:inline-block; padding:0; margin-left:1em}",
     ".externalLinks a:hover {color:#F5F5F5; text-decoration:underline}"
   ]
 })

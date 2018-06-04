@@ -8,7 +8,8 @@
     </span>
     <span fxFlex>Service Catalog</span>
     <span>
-      <login-button></login-button> 
+      <login-button></login-button>
+      <more-button *ngIf="(isSmall | async)!.matches"></more-button> 
     </span>
   </mat-toolbar>
   <mat-sidenav-container class="app-sidenav-container"  [style.marginTop.px]="(isSmall | async).matches ? 56 : 0">

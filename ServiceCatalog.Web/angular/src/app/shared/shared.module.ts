@@ -13,6 +13,8 @@ fontawesome.library.add(faBars);
 import { BrandingBarComponent } from './components/branding-bar/branding-bar.component';
 import { ImpersonateDialog } from './components/impersonate-dialog/impersonate-dialog.component';
 import { LoginButtonComponent } from './components/login-button/login-button.component';
+import { MoreButtonComponent } from './components/more-button/more-button.component';
+import { ExternalLinksComponent } from './components/external-links/external-links.component';
 
 
 
@@ -21,6 +23,8 @@ import { LoginButtonComponent } from './components/login-button/login-button.com
     BrandingBarComponent,
     ImpersonateDialog,
     LoginButtonComponent,
+    MoreButtonComponent,
+    ExternalLinksComponent,
   ],
   entryComponents: [
     ImpersonateDialog
@@ -38,8 +42,10 @@ import { LoginButtonComponent } from './components/login-button/login-button.com
     FlexLayoutModule,
     MaterialModule,
     BrandingBarComponent,
+    ExternalLinksComponent,
     ImpersonateDialog,
     LoginButtonComponent,
+    MoreButtonComponent,
   ],
 })
 export class SharedModule { }
