@@ -1,4 +1,7 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ExternalLinksState, ExternalLink } from '../../states/ExternalLinks.state';
+import { Observable } from 'rxjs';
+import { Select } from '@ngxs/store';
 
 @Component({
   selector: 'branding-bar',
@@ -10,18 +13,18 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 				</svg>
       </a>
       <div fxFlex></div>
-      <div>
-        <external-links class="externalLinks"></external-links>
+      <div class="externalLinks">
+        <a *ngFor="let externalLink of externalLinks$ | async" [href]="externalLink.Url">{{externalLink.Text}}</a>
       </div>
     </div>
   `,
-  encapsulation: ViewEncapsulation.Native,
   styles: [
-    ".externalLinks a {color:#999999; text-decoration:none; display:inline-block; padding:0; margin-left:1em}",
+    ".externalLinks a {color:#999999; text-decoration:none; display:inline-block; margin-left:1em}",
     ".externalLinks a:hover {color:#F5F5F5; text-decoration:underline}"
   ]
 })
 export class BrandingBarComponent implements OnInit {
+  @Select(ExternalLinksState) externalLinks$ : Observable<ExternalLink[]>;
 
   constructor() { }
 

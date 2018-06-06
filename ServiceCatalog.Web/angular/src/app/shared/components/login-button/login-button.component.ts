@@ -17,7 +17,7 @@ import { ImpersonateDialog } from '../impersonate-dialog/impersonate-dialog.comp
   
     <mat-menu #userMenu="matMenu" overlapTrigger="false">
       <div class="userProfile">
-          <h2 fxLayout style="margin:0; color: rgba(0,0,0,.87)">{{(user$ | async)?.fullName}}</h2>
+          <h2 fxLayout style="margin:0; color: rgba(0,0,0,.87); white-space:nowrap; min-width:200px">{{(user$ | async)?.fullName}}</h2>
             <div><span class="fieldName">HawkID:</span> {{(user$ | async)?.hawkId}}</div>
             <div><span class="fieldName">UnivID:</span> {{(user$ | async)?.univId}}</div>
             <div *ngIf="(isImpersonated$ | async)" class="mat-caption">(Impersonated by {{(user$ | async)?.originalUser}})</div>
@@ -26,13 +26,13 @@ import { ImpersonateDialog } from '../impersonate-dialog/impersonate-dialog.comp
       <a mat-menu-item (click)="openImpersonateDialog()" *ngIf="canImpersonate$ | async" ><mat-icon svgIcon="supervisor_account" aria-label="Logout"></mat-icon>
         <span>Impersonate</span>
       </a>
-      <a mat-menu-item href="/account/Logout"><mat-icon svgIcon="exit_to_app" aria-label="Logout"></mat-icon>
+      <a mat-menu-item href="account/Logout"><mat-icon svgIcon="exit_to_app" aria-label="Logout"></mat-icon>
         <span>Logout</span>
       </a>
     </mat-menu>
     `,
   styles: [ ".fieldName{display:inline-block; width:60px}",
-            ".userProfile{min-width:200px; padding:0 16px 8px 16px; color: rgba(0,0,0,.54)}"
+            ".userProfile{padding:0 16px 8px 16px; color: rgba(0,0,0,.54)};",
           ]
 })
 export class LoginButtonComponent implements OnInit {

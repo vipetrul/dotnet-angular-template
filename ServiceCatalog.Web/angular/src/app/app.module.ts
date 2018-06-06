@@ -18,6 +18,7 @@ import { Page3Component } from './page3/page3.component';
 import { UserState } from './shared/states/User.state';
 import { environment } from '../environments/environment';
 import { PermissionsState } from './shared/states/Permissions.state';
+import { ExternalLinksState } from './shared/states/ExternalLinks.state';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { PermissionsState } from './shared/states/Permissions.state';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    NgxsModule.forRoot([UserState, PermissionsState]),
+    NgxsModule.forRoot([UserState, PermissionsState, ExternalLinksState]),
     ToastrModule.forRoot(),
     CoreModule,
     AppRoutingModule,

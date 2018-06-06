@@ -14,8 +14,6 @@ import { BrandingBarComponent } from './components/branding-bar/branding-bar.com
 import { ImpersonateDialog } from './components/impersonate-dialog/impersonate-dialog.component';
 import { LoginButtonComponent } from './components/login-button/login-button.component';
 import { MoreButtonComponent } from './components/more-button/more-button.component';
-import { ExternalLinksComponent } from './components/external-links/external-links.component';
-
 
 
 @NgModule({
@@ -24,7 +22,6 @@ import { ExternalLinksComponent } from './components/external-links/external-lin
     ImpersonateDialog,
     LoginButtonComponent,
     MoreButtonComponent,
-    ExternalLinksComponent,
   ],
   entryComponents: [
     ImpersonateDialog
@@ -42,7 +39,6 @@ import { ExternalLinksComponent } from './components/external-links/external-lin
     FlexLayoutModule,
     MaterialModule,
     BrandingBarComponent,
-    ExternalLinksComponent,
     ImpersonateDialog,
     LoginButtonComponent,
     MoreButtonComponent,

@@ -86,7 +86,7 @@ namespace ServiceCatalog.Web.Controllers
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
 
-            return Redirect(string.IsNullOrEmpty(returnUrl) ? "/" : returnUrl);
+            return Redirect(string.IsNullOrEmpty(returnUrl) ? Url.Content("~/") : returnUrl);
         }
 
         [HttpGet, Route("AccessDenied"), ProducesResponseType(StatusCodes.Status401Unauthorized)]

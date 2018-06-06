@@ -16,7 +16,7 @@ import { MatDialog } from '@angular/material';
   </mat-dialog-content>
   <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
-    <a mat-button [disabled]="!hawkIdToImpersonate.value" [attr.href]="'/account/impersonate/' + hawkIdToImpersonate.value">Ok</a>
+    <a mat-button [disabled]="!hawkIdToImpersonate.value" [attr.href]="'account/impersonate/' + hawkIdToImpersonate.value">Ok</a>
   </mat-dialog-actions>
   `,
   styles: []

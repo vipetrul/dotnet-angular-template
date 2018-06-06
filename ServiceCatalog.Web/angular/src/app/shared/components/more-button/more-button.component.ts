@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ExternalLinksState, ExternalLink } from '../../states/ExternalLinks.state';
+import { Observable } from 'rxjs';
+import { Select } from '@ngxs/store';
 
 @Component({
   selector: 'more-button',
@@ -8,13 +11,14 @@ import { Component, OnInit } from '@angular/core';
   </a>
 
   <mat-menu #userMenu="matMenu" overlapTrigger="false">
-    <external-links [showIcons]="true" class="externalLinks"></external-links>
+    <a mat-menu-item *ngFor="let externalLink of externalLinks$ | async" [href]="externalLink.Url"><mat-icon svgIcon="link"></mat-icon>{{externalLink.Text}}</a>
   </mat-menu>
   `,
   styles: [
   ]
 })
 export class MoreButtonComponent implements OnInit {
+  @Select(ExternalLinksState) externalLinks$ : Observable<ExternalLink[]>;
 
   constructor() { }
 
