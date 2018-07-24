@@ -22,9 +22,9 @@
       [mode]="(isSmall | async)!.matches ? 'over' : 'side'" 
       [opened]="!(isSmall | async)!.matches">
       <mat-nav-list>
-        <a mat-list-item routerLink="Home">Link 1</a>
-        <a mat-list-item routerLink="Page2">Link 2</a>
-        <a mat-list-item routerLink="Page3">Link 3</a>
+        <a mat-list-item routerLinkActive="active-link" routerLink="home">Link 1</a>
+        <a mat-list-item routerLinkActive="active-link" routerLink="page2">Link 2</a>
+        <a mat-list-item routerLinkActive="active-link" routerLink="page3">Link 3</a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content class="mat-body-2" style="padding:24px">

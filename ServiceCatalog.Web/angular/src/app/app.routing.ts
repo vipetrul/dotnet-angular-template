@@ -17,11 +17,11 @@ export const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'Page2',
+    path: 'page2',
     component: Page2Component
   },
   {
-    path: 'Page3',
+    path: 'page3',  
     component: Page3Component
   },
   {
