@@ -10,12 +10,19 @@ import { Permissions, PermissionsState } from '../shared/states/Permissions.stat
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
   @Select(UserState) user$: Observable<User>;
   @Select(PermissionsState) permissions$: Observable<Permissions>;
 
   constructor() { }
 
+  search(valueToSearch:string){
+    console.log("Searching:", valueToSearch);
+  }
+
   ngOnInit() {
   }
+
+
 
 }
