@@ -1,71 +1,81 @@
-
-<app-search-input (textEntered)='search($event)' ></app-search-input>
+<app-search-input (textEntered)='search($event)'>
+</app-search-input>
+<mat-progress-bar mode="indeterminate" style="border-radius:0 0 3px 3px; margin-top:-3px"></mat-progress-bar>
+<div style="margin-top:24px" >
+  <div *ngFor="let service of (servicesState$ | async).searchResult; let i = index">
+    <h2 style="margin:0">{{service.name}}</h2>
+    <p>{{service.description}}</p>
+  </div>
+</div>
+<pre>
+  {{(servicesState$ | async).searchResult | json }}
+</pre>
 
 <h1>Philosophy behind template</h1>
-    <h2>Target use</h2>
-    <ul>
-      <li>Intranet applications / not for general public use</li>
-      <li>Desktop web apps</li>
-      <li>Mobile apps (via Cordova or similar)</li>
-    </ul>
-    
-    <h2>Goals</h2>
-    <ul>
-      <li>Maximize real estate, especially on smaller screens (reactive layout)</li>
-      <li>Use material design, because it is not space greedy and looks consistently good on desktop and mobile devices.</li>
-      <li>Reflect impersonated login (login with service account / account must contain "_")</li>
-    </ul>
+<h2>Target use</h2>
+<ul>
+  <li>Intranet applications / not for general public use</li>
+  <li>Desktop web apps</li>
+  <li>Mobile apps (via Cordova or similar)</li>
+</ul>
 
-    <h2>Things to consider</h2>
-    <ul>
-      <li>Is it OK to use default material design theme? Or should it be customized for UIowa?</li>
-      <li>Does each application should have a logo (ex. Universal Workflow https://workflow.uiowa.edu/inbox )</li>
-      <li>Should we include footer? If so, what should be included there?</li>
-    </ul>
-    asd<br>
-    asd<br>
-    asd<br>
-    asd<br>
-    asd<br>
-  {{user$ | async | json}}<br>
-  {{permissions$ | async | json}}
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
-  asd<br>
+<h2>Goals</h2>
+<ul>
+  <li>Maximize real estate, especially on smaller screens (reactive layout)</li>
+  <li>Use material design, because it is not space greedy and looks consistently good on desktop and mobile devices.</li>
+  <li>Reflect impersonated login (login with service account / account must contain "_")</li>
+</ul>
+
+<h2>Things to consider</h2>
+<ul>
+  <li>Is it OK to use default material design theme? Or should it be customized for UIowa?</li>
+  <li>Does each application should have a logo (ex. Universal Workflow https://workflow.uiowa.edu/inbox )</li>
+  <li>Should we include footer? If so, what should be included there?</li>
+</ul>
+asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> {{user$ | async | json}}
+<br> {{permissions$ | async | json}} asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br> asd
+<br>

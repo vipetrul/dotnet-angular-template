@@ -24,7 +24,7 @@ export class PermissionsState  {
   static CanImpersonate(permissions: Permissions) { return permissions.canImpersonate; }
 
   @Action(LoadPermissions)
-  async loadUser(ctx: StateContext<PermissionsState>, action: LoadPermissions) {
+  async loadUser(ctx: StateContext<Permissions>, action: LoadPermissions) {
     var data = await this._httpClient.get("api/Permissions").toPromise();
     ctx.patchState(data);
   }

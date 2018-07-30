@@ -19,6 +19,7 @@ import { UserState } from './shared/states/User.state';
 import { environment } from '../environments/environment';
 import { PermissionsState } from './shared/states/Permissions.state';
 import { ExternalLinksState } from './shared/states/ExternalLinks.state';
+import { ServicesState } from './shared/states/Services.state';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,12 @@ import { ExternalLinksState } from './shared/states/ExternalLinks.state';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    NgxsModule.forRoot([UserState, PermissionsState, ExternalLinksState]),
+    NgxsModule.forRoot([
+      UserState, 
+      PermissionsState, 
+      ExternalLinksState,
+      ServicesState
+    ]),
     ToastrModule.forRoot(),
     CoreModule,
     AppRoutingModule,

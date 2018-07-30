@@ -13,17 +13,17 @@ using ServiceCatalog.Web.Infrastructure;
 using ServiceCatalog.Web.Requests;
 using ServiceCatalog.Web.ViewModels;
 
-namespace ServiceCatalog.Web.Controllers
+namespace ServiceCatalog.Web.Controllers.Api
 {
     [Route("api/[controller]")]
     public class PermissionsController : Controller
     {
-        private readonly ILogger<OrdersController> _logger;
+        private readonly ILogger<PermissionsController> _logger;
         private readonly ServiceCatalogDbContext _dbContext;
         private readonly IAuthorizationPolicy _authorizationPolicy;
         private readonly IAuthorizationService _authorizationService;
 
-        public PermissionsController(ILogger<OrdersController> logger, ServiceCatalogDbContext dbContext, IAuthorizationPolicy authorizationPolicy)
+        public PermissionsController(ILogger<PermissionsController> logger, ServiceCatalogDbContext dbContext, IAuthorizationPolicy authorizationPolicy)
         {
             _logger = logger;
             _dbContext = dbContext;

@@ -13,11 +13,10 @@ import { map, filter, debounceTime, distinctUntilChanged } from 'rxjs/operators'
             style="border:none; outline:none; margin-left: 0.3em; font-size:16px;" 
             placeholder="Search Services"
             />
-    <button *ngIf="searchref.value" (click)="reset()" class="transparent" style="padding:0; height:24px">
+    <button *ngIf="searchref.value" (click)="reset()" class="transparent" style="padding:0; height:24px; color: #3f51b5">
       <mat-icon aria-label="Clear search" svgIcon="clear"></mat-icon>
     </button>
   </div>
-  {{searchref.value}}
   `,
   styles: [
   `button.transparent {
